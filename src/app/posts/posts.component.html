@@ -1,5 +1,6 @@
+<input type="text" #title class="form-control" (keyup.enter)="CreatePost(title)">
 <ul class="list-group">
     <li *ngFor="let post of posts" class="list-group-item">
-        {{post.title}}
+        {{post.Title}}
     </li>
 </ul>
