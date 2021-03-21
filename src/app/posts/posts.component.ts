@@ -14,18 +14,20 @@ export class PostsComponent implements OnInit {
     this.http.get(this.baseURL+"api/post/GetAllPosts")
       .subscribe(response => {
         this.posts = response.json();
+        console.log(response.json());
       });
   }
   ngOnInit(): void {
   }
   CreatePost(inputControl: HTMLInputElement) {
-    let post:any = { title: inputControl.value }
-    //let post = { title: inputControl.value }
-
-    this.http.post(this.baseURL, JSON.stringify(post))
-      .subscribe(response => {
-        post.id = response.json();
-        //post['id']=response.json();
+    let post:any = { Title: inputControl.value }
+    inputControl.value="";
+    
+    this.http.post(this.baseURL+"api/post/CreatePost", post)  
+    .subscribe(response => {
+      console.log(response.json());  
+        post['Id']=response.json();
+        console.log(post);
         this.posts.splice(0,0,post);
       });
   }
